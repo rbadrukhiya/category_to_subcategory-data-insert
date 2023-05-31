@@ -20,7 +20,7 @@ router.post('/add_sub_category', async function (req, res, next) {
     if (data == undefined) {
         subdata = await subcategory.create(req.body)
         res.status(401).json({
-            status:'success undefined',
+            status: 'success undefined',
             subdata
         })
     }
@@ -29,13 +29,13 @@ router.post('/add_sub_category', async function (req, res, next) {
             console.log('match name');
             if (req.body.category_id == data.category_id) {
                 res.status(401).json({
-                    ststus: 'that data is already taken!...'
+                    status: 'that data is already taken!...'
                 })
             }
             else {
                 data = await subcategory.create(req.body)
                 res.status(401).json({
-                    ststus: 'success insert  data not match  id and name',
+                    status: 'success insert  data not match  id and name',
                     data
                 })
             }
@@ -43,7 +43,7 @@ router.post('/add_sub_category', async function (req, res, next) {
         else {
             data = await subcategory.create(req.body)
             res.status(401).json({
-                ststus: 'success name not match insert',
+                status: 'success name not match insert',
                 data
             })
         }
@@ -51,20 +51,45 @@ router.post('/add_sub_category', async function (req, res, next) {
 
 
 
+    // lookup to get data 
 
+    // router.get('/getdata/:id', async function (req, res, next) {
+    //     try {
+    //     //   var data = await subcategory.find()
+    //         var data = await subcategory.aggregate([
+    //             {
+    //                 '$lookup': {
+    //                     'from': 'sub_categories',
+    //                     'localField': "category_id",
+    //                     'foreignField': '_id',
+    //                     'as': 'user'
+    //                 }
+    //             },{
+    //                 '$match':{
+    //                     "category_id": req.params.id
+    //                 }
+    //             }
+    //         ])
+    //         res.status(201).json({
+    //             status:'success',
+    //             data
+    //         })
+    //     }
+    //     catch {
+    //         res.status(401).json({
+    //             status:'alert',
+                
+    //         })
+    //     }
+        
+    // })
+        
+        // router.get('/getdata' , async function(req , res , next){
+        //     data = await category.find()
+        //     console.log(data);
+        // }) 
 
-
-    // try {
-    //     var data = await category.create(req.body)
-    //     res.status(201).json({
-    //         status: 'success',
-    //         data
-    //     })
-    // }
-    // catch (error) {
-    //     console.log(error);
-    // }
-
+       
 });
 
 
